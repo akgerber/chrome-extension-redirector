@@ -1,10 +1,9 @@
 {
-  "name": "Redirector",
-  "description": "Redirect urls",
+  "name": "Buttylitics",
+  "description": "Reset Google Analytics UTM variables to mybutt",
   "version": "1.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "background": {"scripts":["URI/src/URI.js", "background.js"]},
-  "options_page": "options.html",
   "permissions": [
     "<all_urls>",
     "webRequest",
