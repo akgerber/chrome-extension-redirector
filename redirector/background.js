@@ -12,6 +12,14 @@ chrome.webRequest.onBeforeRequest.addListener(
       redirectUrl = URI(details.url)
 	.removeSearch("utm_source")
         .addSearch({utm_source: "mybutt"})
+	.removeSearch("utm_medium")
+        .addSearch({utm_medium: "mybutt"})
+	.removeSearch("utm_campaign")
+        .addSearch({utm_campaign: "mybutt"})
+	.removeSearch("utm_content")
+        .addSearch({utm_content: "mybutt"})
+	.removeSearch("utm_term")
+        .addSearch({utm_term: "mybutt"})
 	.toString();
 
       if (redirectUrl != details.url) {
