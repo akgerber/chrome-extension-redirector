@@ -1,0 +1,3 @@
+[submodule "URI"]
+	path = redirector/URI
+	url = https://github.com/medialize/URI.js.git
