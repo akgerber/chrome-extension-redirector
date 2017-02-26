@@ -1,23 +1,22 @@
 chrome.webRequest.onBeforeRequest.addListener(
   function(details) {
     var redirects, pattern, from, to, redirecUrl;
-    redirects = JSON.parse(localStorage.getItem('redirects') || '[]');
-    for (var i=0; i<redirects.length; i++) {
-      from = redirects[i][0];
-      to = redirects[i][1];
-      try {
-        pattern = new RegExp(from, 'ig');
-      } catch(err) {
-        //bad pattern
-        continue;
-      }
-      match = details.url.match(pattern);
-      if (match) {
-        redirectUrl = details.url.replace(pattern, to);
-        if (redirectUrl != details.url) {
-          return {redirectUrl: redirectUrl};
+    utm = JSON.parse(localStorage.getItem('utm') || '[]');
+    try {
+      pattern = new RegExp('utm_source', 'ig');
+    } catch(err) {
+      //bad pattern
+    }
+    match = details.url.match(pattern);
+    if (match) {
+      redirectUrl = URI(details.url)
+	.removeSearch("utm_source")
+        .addSearch({utm_source: "mybutt"})
+	.toString();
+
+      if (redirectUrl != details.url) {
+        return {redirectUrl: redirectUrl};
         }
-      }
     }
     return {};
   },
